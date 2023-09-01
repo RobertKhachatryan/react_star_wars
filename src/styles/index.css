@@ -11,6 +11,7 @@
 
   --font-size-header:26px;
   --font-size-main:16px;
+  --font-size-subheader:18px;
   --font-bold:600;
 
   --border-radius-small:3px;
@@ -23,7 +24,8 @@
   --theme-default-header:#cccc46;
   --theme-default-bgimage:url(@static/bg.jpg);
 
-  --text-shadow-yellow: 0 0 2px var(--color-white),0 0 40px var(--color-blue);
+  --text-shadow-yellow: 0 0 2px var(--color-white),0 0 40px var(--color-yellow);
+  --text-shadow-blue: 0 0 2px var(--color-white),0 0 40px var(--color-blue);
 
   --transition:.4s;
 

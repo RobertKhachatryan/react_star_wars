@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import UIButton from "@ui/UIButton";
+
 import styles from "./PeopleNavigation.module.css";
 
 const PeopleNavigation = ({ getResource, prevPage, nextPage, counterPage }) => {
@@ -7,24 +9,16 @@ const PeopleNavigation = ({ getResource, prevPage, nextPage, counterPage }) => {
   const handlePrevious = () => getResource(prevPage);
 
   return (
-    <div>
-      <Link to={`/people/?page=${counterPage - 1}`} className={styles.link}>
-        <button
+    <div className={styles.container}>
+      <Link to={`/people/?page=${counterPage - 1}`} className={styles.buttons}>
+        <UIButton
+          text="Previous"
           onClick={handlePrevious}
-          className={styles.buttons}
           disabled={!prevPage}
-        >
-          Previous
-        </button>
+        />
       </Link>
-      <Link to={`/people/?page=${counterPage + 1}`} className={styles.link}>
-        <button
-          onClick={handleNext}
-          className={styles.buttons}
-          disabled={!nextPage}
-        >
-          Next
-        </button>
+      <Link to={`/people/?page=${counterPage + 1}`} className={styles.buttons}>
+        <UIButton text="Next" onClick={handleNext} disabled={!nextPage} />
       </Link>
     </div>
   );

@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getApiResource } from "@utils/network";
 import { API_PERSON } from "@constants/api";
+import { getPeopleImage } from "@services/getPeopleData";
+//COMPONENTS
+import PersonInfo from "@components/PersonPage/PersonInfo";
+import PersonImage from "@components/PersonPage/PersonImage";
 //
 import styles from "./PersonPage.module.css";
 
@@ -9,6 +13,7 @@ const PersonPage = () => {
   //STATES
   const [personInfo, setPersonInfo] = useState(null);
   const [personName, setPersonName] = useState(null);
+  const [personPhoto, setPersonPhoto] = useState(null);
   //STATES
   const { id } = useParams();
   useEffect(() => {
@@ -25,29 +30,18 @@ const PersonPage = () => {
           { title: "Gender", data: res.gender },
         ]);
         setPersonName(res.name);
+        setPersonPhoto(getPeopleImage(id));
       }
     })();
   }, []);
-  console.log(personInfo);
   return (
-    <>
-      <h1>{personName}</h1>
-      {personInfo && (
-        <ul>
-          {personInfo.map(({ title, data }) => {
-            return (
-              data && (
-                <li key={title}>
-                  <span>
-                    {title}: {data}
-                  </span>
-                </li>
-              )
-            );
-          })}
-        </ul>
-      )}
-    </>
+    <div className={styles.wrapper}>
+      <span className={styles.person__name}>{personName}</span>
+      <div>
+        <PersonImage personPhoto={personPhoto} personName={personName} />
+        {personInfo && <PersonInfo personInfo={personInfo} />}
+      </div>
+    </div>
   );
 };
 

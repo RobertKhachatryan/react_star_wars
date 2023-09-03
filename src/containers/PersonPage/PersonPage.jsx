@@ -37,7 +37,7 @@ const PersonPage = () => {
   return (
     <div className={styles.wrapper}>
       <span className={styles.person__name}>{personName}</span>
-      <div>
+      <div className={styles.container}>
         <PersonImage personPhoto={personPhoto} personName={personName} />
         {personInfo && <PersonInfo personInfo={personInfo} />}
       </div>

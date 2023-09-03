@@ -14,11 +14,19 @@
   --font-bold:600;
 
   --border-radius-small:3px;
+  --border-radius-medium:5px;
   --border-radius-person-photo:3px 3px 0 0;
+  --border-radius-person-name:
+        var(--border-radius-small)
+        var(--border-radius-small)
+        var(--border-radius-small)
+        0;
 
+  --spacing-ultrasmall:5px;
   --spacing-small:10px;
   --spacing-medium:20px;
   --spacing-large:30px;
+  --margin-list:7px;
 
   --theme-default-header:#cccc46;
   --theme-default-bgimage:url(@static/bg.jpg);

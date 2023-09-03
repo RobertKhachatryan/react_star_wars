@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { getApiResource } from "@utils/network";
 import { API_PERSON } from "@constants/api";
@@ -9,12 +9,17 @@ import PersonImage from "@components/PersonPage/PersonImage";
 import PersonLinkBack from "@components/PersonPage/PersonLinkBack";
 //
 import styles from "./PersonPage.module.css";
+import { Triangle } from "react-loader-spinner";
+const PersonFilms = React.lazy(() =>
+  import("@components/PersonPage/PersonFilms")
+);
 
 const PersonPage = () => {
   //STATES
   const [personInfo, setPersonInfo] = useState(null);
   const [personName, setPersonName] = useState(null);
   const [personPhoto, setPersonPhoto] = useState(null);
+  const [personFilms, setPersonFilms] = useState(null);
   //STATES
   const { id } = useParams();
   useEffect(() => {
@@ -32,6 +37,8 @@ const PersonPage = () => {
         ]);
         setPersonName(res.name);
         setPersonPhoto(getPeopleImage(id));
+
+        res.films.length && setPersonFilms(res.films);
       }
     })();
   }, []);
@@ -43,6 +50,11 @@ const PersonPage = () => {
         <div className={styles.container}>
           <PersonImage personPhoto={personPhoto} personName={personName} />
           {personInfo && <PersonInfo personInfo={personInfo} />}
+          {personFilms && (
+            <Suspense fallback={<div>Loading...</div>}>
+              <PersonFilms personFilms={personFilms} />
+            </Suspense>
+          )}
         </div>
       </div>
     </>

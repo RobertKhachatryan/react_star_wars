@@ -6,6 +6,7 @@ import { getPeopleImage } from "@services/getPeopleData";
 //COMPONENTS
 import PersonInfo from "@components/PersonPage/PersonInfo";
 import PersonImage from "@components/PersonPage/PersonImage";
+import PersonLinkBack from "@components/PersonPage/PersonLinkBack";
 //
 import styles from "./PersonPage.module.css";
 
@@ -35,13 +36,16 @@ const PersonPage = () => {
     })();
   }, []);
   return (
-    <div className={styles.wrapper}>
-      <span className={styles.person__name}>{personName}</span>
-      <div className={styles.container}>
-        <PersonImage personPhoto={personPhoto} personName={personName} />
-        {personInfo && <PersonInfo personInfo={personInfo} />}
+    <>
+      <PersonLinkBack />
+      <div className={styles.wrapper}>
+        <span className={styles.person__name}>{personName}</span>
+        <div className={styles.container}>
+          <PersonImage personPhoto={personPhoto} personName={personName} />
+          {personInfo && <PersonInfo personInfo={personInfo} />}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
